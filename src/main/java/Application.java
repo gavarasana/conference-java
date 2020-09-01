@@ -8,8 +8,16 @@ public class Application {
 
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
-        SpeakerService speakerService = context.getBean("SpeakerService", SpeakerService.class);
+        SpeakerService speakerService = context.getBean("speakerService", SpeakerService.class);
+
+
+        System.out.println(speakerService);
 
         System.out.println(speakerService.findAll().get(0).getFirstName());
+
+        SpeakerService speakerServiceSecond = context.getBean("speakerService", SpeakerService.class);
+
+        System.out.println(speakerServiceSecond);
+
     }
 }

@@ -3,17 +3,17 @@ package com.pluralsight.repository;
 import com.pluralsight.model.Speaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-@Repository("speakerRepository")
-public class HibernateSpeakerRepository implements SpeakerRepository {
+//@Repository("speakerRepository")
+//@Profile("Development")
+public class DevelopmentSpeakerRepository implements SpeakerRepository {
 
-    @Value("#{ T(java.lang.Math).random() * 1000 }")
-    private double randomNumber;
 
     @Autowired
     private Calendar calendar;
@@ -26,7 +26,7 @@ public class HibernateSpeakerRepository implements SpeakerRepository {
         speaker.setFirstName("Ravi");
         speaker.setLastName("Gavarasana");
         speaker.setConferenceDate(calendar.getTime());
-        speaker.setTicketNumber(randomNumber);
+        speaker.setTicketNumber(1234.43);
         speakers.add(speaker);
 
         return speakers;

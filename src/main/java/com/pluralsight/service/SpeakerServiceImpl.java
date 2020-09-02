@@ -5,28 +5,33 @@ import com.pluralsight.repository.SpeakerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service("speakerService")
 public class SpeakerServiceImpl implements SpeakerService {
 
-    private final SpeakerRepository repository;
+    private SpeakerRepository repository;
 
-    /*public SpeakerServiceImpl(){
+    public SpeakerServiceImpl(){
         System.out.println("SpeakerServiceImpl - No args constructor");
-    }*/
+    }
 
-    @Autowired
     public SpeakerServiceImpl(SpeakerRepository speakerRepository){
         System.out.println("SpeakerServiceImpl - with speakerRepository arg constructor");
         repository = speakerRepository;
     }
 
+    @PostConstruct
+    private void Initialize(){
+        System.out.println("Invoked after constructor by spring DI");
+    }
 
-//    public void setRepository(SpeakerRepository repository) {
-//        System.out.println("Setting the repository");
-//        this.repository = repository;
-//    }
+    @Autowired
+    public void setRepository(SpeakerRepository repository) {
+        System.out.println("Setting the repository");
+        this.repository = repository;
+    }
 
     public List<Speaker> findAll(){
         return  repository.FindAll();
